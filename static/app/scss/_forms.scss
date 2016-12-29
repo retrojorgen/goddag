@@ -1,0 +1,273 @@
+.signup-form {
+  position: relative;
+  max-width: 400px;
+  margin: 50px auto 0 auto;
+  color: darken($textDarkGrey, 40%);
+  overflow: hidden;
+
+  .form-inner-wrapper {
+    border-top: 1px solid white;
+    padding: 40px;
+    @media #{$phone} {
+      padding: 14px;
+    }
+
+  }
+  .btn {
+    color: white;
+  }
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    background-size: cover;
+    background-position: top center;
+    &.no-photo {
+      background-color: rgba(0,0,0,0.1);
+      border: 1px solid $transparentWhite;
+    }
+  }
+  .avatar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  .avatar-thumb-container {
+    display: inline-block;
+    width: 70px;
+    width: 70px;
+    position: relative;
+    text-align: center;
+    margin: 0px 2px 14px 2px;
+
+    .avatar-thumb {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: top center;
+      &.selected {
+        border: 2px solid white;
+      }
+      &.avatar-1 {
+        background-image: url(/static/userImages/avatar-1.jpg);
+      }
+      &.avatar-2 {
+        background-image: url(/static/userImages/avatar-2.jpg);
+      }
+      &.avatar-3 {
+        background-image: url(/static/userImages/avatar-3.jpg);
+      }
+      &.avatar-4 {
+        background-image: url(/static/userImages/avatar-4.jpg);
+      }
+      &.avatar-5 {
+        background-image: url(/static/userImages/avatar-5.jpg);
+      }
+      &.avatar-6 {
+        background-image: url(/static/userImages/avatar-6.jpg);
+      }
+    }
+  }
+  .upload-photo-button {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 14px;
+    background-color: white;
+    border-radius: 4px;
+    /* content: "heisann"; */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border: 0;
+    &:after {
+      content:"Last opp bilde"
+    }
+  }
+  .form-control {
+    width: 100%;
+    text-align: center;
+  }
+  &.slim {
+    max-width: 320px;
+  }
+  label {
+    display: none;
+  }
+  @media #{$phone} {
+    padding: 16px 16px 60px 16px;
+    border-radius: 0;
+  }
+
+  .form-control-feedback {
+    top: 0 !important;
+  }
+
+  .reset-password {
+    text-align: center;
+    padding: 14px;
+    a {
+      color: white;
+    }
+  }
+  a {
+    text-align: center;
+  }
+}
+
+.form-header {
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+  font-size: 40px;
+  color: white;
+}
+
+.form-description {
+  font-weight: normal;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.form-full {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: 1001;
+  margin: 0;
+  padding: 0;
+
+
+  display: flex;
+  align-items: center;
+  @media #{$phone} {
+    display: block;
+  }
+  a {
+    color: $blue;
+    cursor: pointer;
+  }
+  .form-controls {
+    @media #{$phone} {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 16px;
+      background-color: #f5f5f5;
+    }
+
+  }
+}
+
+.send-new-password-container {
+  margin-left: -16px;
+  margin-right: -16px;
+  padding: 16px 16px 16px 16px;
+  background-color: #f5f5f5;
+}
+
+.details-wrapper {
+  margin-bottom: 20px;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.details-view {
+  padding: 30px 20px 20px 20px;
+  margin-top: -10px;
+  background-color: darken($darkDarkBlue, 5%);
+}
+
+
+.details-showbutton-container {
+  position: relative;
+  &:before {
+    border-top: 1px solid $blue;
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    height: 50%;
+    width: 100%;
+  }
+
+
+  .details-showbutton {
+    background-color: $blue;
+    color: white;
+    border-radius: 4px;
+    border: 0;
+    text-transform: uppercase;
+    font-size: 10px;
+    padding: 4px 10px;
+    position: relative;
+    outline: none;
+    &:hover {
+      background-color: darken($blue, 5%);
+    }
+  }
+}
+
+.form-header-image {
+  margin-top: 0;
+  width: 100%;
+}
+
+.login-buttons-container {
+  vertical-align: middle;
+  float: right;
+  margin-right: 14px;
+  .btn {
+    cursor: pointer;
+    margin-top: 9px;
+    margin-bottom: 8px;
+    color: white;
+    background-color: transparent;
+    border: 0;
+    border-radius: 4px;
+    padding: 8px 20px;
+    outline: none;
+    @include transition(0.5s);
+    &.signup {
+      background-color: darken($blue, 20%);
+      border: 0;
+    }
+    &.login {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    &:hover {
+
+    }
+    &.logout {
+      border-radius: 4px;
+      padding: 4px 6px;
+    }
+  }
+  @media #{$phone} {
+    padding-right: 0;
+    padding: 6px 6px;
+    margin-right: 0;
+    .btn.login,
+    .btn.signup {
+      padding: 8px 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      height: 37px;
+    }
+  }
+}

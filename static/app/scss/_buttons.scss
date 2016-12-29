@@ -1,0 +1,77 @@
+.add-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 16px 29px 20px 29px;
+  border-radius: 50%;
+  background-color: #2b7ec6;
+  color: white;
+  border: 0;
+  font-size: 28px;
+  @include transition(0.5s);
+  outline: none;
+  &:hover {
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.6);
+  }
+  &:active {
+    background-color: darken(#2b7ec6, 20%);
+  }
+}
+
+.create-new-button {
+  background-color: transparent;
+  border: 1px solid $textDarkGrey;
+  padding: 6px 6px 3px 6px;
+  border-radius: 50%;
+  float: right;
+  margin-top: -5px;
+  outline: none;
+  @include transition(0.25s);
+  .glyphicon {
+    top: 0;
+  }
+  &:hover {
+    border: 1px solid $blue;
+    background-color: $blue;
+    color: white
+  }
+}
+
+.edit-button {
+  position: relative;
+  z-index: 10;
+}
+
+.add-description-button {
+  background-color: transparent;
+  border: 1px solid $transparentWhite;
+  border-radius: 24px;
+  padding: 6px 16px;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.add-game-button {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: $blue;
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  text-transform: uppercase;
+  padding: 10px 29px;
+  outline: none;
+  @include transition(0.25s ease-in-out);
+  &:hover {
+    background-color: darken($blue, 10%);
+    @include box-shadow(8px 6px 20px 0px rgba(0, 0, 0, 0.3));
+    @include transition(0.25s ease-in-out);
+    bottom: 14px;
+
+  }
+  &:active {
+    background-color: darken($blue, 20%);
+  }
+}

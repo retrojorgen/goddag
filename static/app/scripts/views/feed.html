@@ -1,0 +1,66 @@
+<div class="fluid-container collection-wrapper no-back" ng-if="user">
+    <div class="fluid-container collection-container">
+        <div class="margin-container">
+            <div class="flexible">
+                <div class="big-col">
+                    <div class="feed-list">
+                        <div class="feed-item" ng-repeat="feedItem in feed | orderBy: '-created'">
+                            <div class="feed-item-header">
+                                <div class="profile-image" ng-style="{'background-image': 'url(/static/userImages/' + feedItem.referenceUserProfileImageId + '.jpg)'}"></div>
+                                <div class="title"><a ng-href="/user/{{feedItem.referenceUserSlug}}" class="username">{{feedItem.referenceUserNick}}</a>
+                                    <span ng-if="feedItem.type == 'new user photo'"> la til et bilde på <a ng-href="/user/{{feedItem.referenceUserSlug}}">profilsiden</a> sin</span>
+                                    <span ng-if="feedItem.type == 'new game'">la til et nytt spill i samlingen <a ng-href="/user/{{feedItem.referenceUserSlug}}/c/{{feedItem.referenceObject.collectionId}}">{{feedItem.referenceObject.collection.title}}</a></span>
+                                </div>
+                                <div class="created"><span am-time-ago="feedItem.created"></span></div>
+                            </div>
+                            <div class="feed-item-body">
+                                <div ng-if="feedItem.type =='new user photo'" class="feed-photo full-width">
+                                    <a ng-href="/user/{{feedItem.referenceUserSlug}}">
+                                        <img ng-src="/static/userImages/{{feedItem.referenceId}}.jpg">
+                                    </a>
+                                </div>
+                                <div ng-if="feedItem.type =='new game'" class="feed-photo full-width">
+                                    <h2>{{feedItem.referenceObject.title}}</h2>
+                                    <h3 ng-if="
+                    feedItem.referenceObject['console'] ||
+                    feedItem.referenceObject['publisher'] ||
+                    feedItem.referenceObject['front'] ||
+                    feedItem.referenceObject['back'] ||
+                    feedItem.referenceObject['region'] ||
+                    feedItem.referenceObject['condition']">
+                                            <span ng-if="feedItem.referenceObject['console']">{{feedItem.referenceObject['console']}} &#183;</span>
+                                            <span ng-if="feedItem.referenceObject['publisher']">{{feedItem.referenceObject['publisher']}} &#183;</span>
+                                            <span ng-if="feedItem.referenceObject['front']">{{feedItem.referenceObject['front']}} &#183;</span>
+                                            <span ng-if="feedItem.referenceObject['back']">{{feedItem.referenceObject['back']}} &#183;</span>
+                                            <span ng-if="feedItem.referenceObject['region']">{{feedItem.referenceObject['region']}} &#183;</span>
+                                            <span ng-if="feedItem.referenceObject['condition']">{{feedItem.referenceObject['condition']}}</span>
+                                    </h3>
+                                    <a ng-if="feedItem.referenceObject.collection && feedItem.referenceObject.images.length" ng-href="/user/{{feedItem.referenceUserSlug}}/c/{{feedItem.referenceObject.collectionId}}/g/{{feedItem.referenceObject._id}}">
+                                        <img ng-src="/static/userImages/{{feedItem.referenceObject.images[0]}}.jpg">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="medium-col"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="!user">
+    <div class="auth-cover">
+        <div class="form-full container front-container">
+            <div class="bottom-image">
+                <img src="/static/images/iceclimberinfront.png">
+            </div>
+            <div class="signup-form front">
+                <h2 class="form-header">Bli med å samle!</h2>
+                <h3 class="form-description">SamleDB er en ny tjeneste for deg som liker å samle på tv-spill. Registrer dine spill, se hva andre samler på og få inspirasjon og oversikt, helt gratis.</h3>
+                <a href="/signup" class="front-become-member">Bli medlem</a>
+            </div>
+        </div>
+    </div>
+
+</div>

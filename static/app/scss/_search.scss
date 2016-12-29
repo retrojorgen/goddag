@@ -1,0 +1,33 @@
+.search-wrapper {
+  position: absolute;
+  top: 100%;
+  margin-top: -1px;
+  left: 0;
+  width: 100%;
+  min-width: 200px;
+  max-height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: darken($darkBlue, 30%);
+  z-index: 10000;
+}
+.search-container {
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+
+  z-index: 10000;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      color: white;
+      padding: 6px 10px;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(255,255,255,0.2);
+      }
+
+    }
+  }
+}

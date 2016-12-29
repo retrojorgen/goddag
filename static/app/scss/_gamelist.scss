@@ -1,0 +1,337 @@
+.game-list.table {
+  //box-shadow: 0px 0px 20px rgba(0,0,0,0.2);
+  margin-bottom: 0;
+  font-size: 11px;
+  -webkit-backface-visibility:visible;
+  border-collapse: collapse;
+  table-layout: fixed;
+  @media #{$phone} {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  &.editable {
+    table-layout: auto;
+    th {
+      position: relative;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-right: 1px solid $lightGrey;
+        border-bottom: 1px solid $lightGrey;
+        pointer-events: none;
+        @media #{$phone} {
+          border: 0;
+        }
+      }
+
+    }
+    td {
+      border: 0;
+      padding: 0;
+
+      &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-right: 1px solid $lightGrey;
+        border-bottom: 1px solid $lightGrey;
+        pointer-events: none;
+
+      }
+
+      .editable-col {
+
+        .editable-col-user-input {
+          padding: 6px;
+          outline: none;
+          cursor: pointer;
+          height: 100%;
+          min-height: 26px;
+          background-color: transparent;
+          border: 0;
+        }
+
+
+        &:hover {
+          &:before {
+            border-bottom: 1px solid rgba(#376cb3, 0.5);
+            border-right: 1px solid rgba(#376cb3, 0.5);
+          }
+        }
+        &.selected {
+          td:first-child {
+            position: relative;
+          }
+        }
+      }
+
+    }
+    td:nth-child(1n+3) {
+      &:hover {
+        &:after {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: -1px;
+          left: -1px;
+          border-left: 1px solid rgba(#376cb3, 0.5);
+          border-top: 1px solid rgba(#376cb3, 0.5);
+          content: "";
+          pointer-events: none;
+          @media #{$phone} {
+            border: 0;
+          }
+        }
+      }
+    }
+    .game-toggle {
+      display: table-cell
+
+    }
+  }
+  .game-toggle {
+    display: none;
+    text-align: center;
+  }
+  tr {
+    background-color: transparent;
+    position:relative;
+    &.game-row {
+      &.toggled {
+        background-color: transparent;
+      }
+      &.selected {
+        background-color: $darkDarkGrey;
+        td:first-child {
+          position: relative;
+          &:before {
+            content: "";
+            left: -8px;
+            top: 0;
+            position: absolute;
+            width: 8px;
+            height: 100%;
+            background-color: #3498db;
+            z-index: 1000;
+          }
+        }
+      }
+    }
+    &:hover {
+      background-color: rgba($lightGrey, 0.5);
+    }
+    td,th {
+    }
+    td.context-menu-container {
+      font-weight: bold;
+      padding: 4px;
+      width: 30px;
+      text-align: center;
+      vertical-align: middle;
+      @media #{$phone} {
+        padding: 10px 4px;
+
+        a {
+          color: lighten($lightGrey, 20%);
+          font-size: 12px !important;
+        }
+      }
+    }
+
+    th {
+      position: relative;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid $lightGrey;
+        pointer-events: none;
+      }
+      &.context-menu-header {
+        width: 30px;
+        text-align: center;
+      }
+    }
+
+    td {
+      padding: 10px 4px;
+      color: #fcfcfc;
+      position: relative;
+      height: 26px;
+      border: 0;
+      &:before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        border-bottom: 1px solid $lightGrey;
+        pointer-events: none;
+        @media #{$phone} {
+          border: 0;
+        }
+      }
+
+      &.inactive {
+      }
+
+
+      &.game-list-controls {
+        padding: 0;
+        .game-toggle-label {
+          width: 100%;
+          padding: 4px 0;
+          margin: 0;
+          text-align: center;
+          input {
+            margin: 0;
+          }
+        }
+        .glyphicon {
+          cursor: pointer;
+          &:hover {
+            color: $blue;
+            .description {
+              display: inline-block;
+            }
+          }
+
+        }
+      }
+    }
+    th {
+      border-bottom: 1px solid $lightGrey;
+      border-right: 0;
+      cursor:pointer;
+      height: 26px;
+      &:nth-child(even),
+      &:nth-child(odd) {
+        font-weight: normal;
+        text-transform: uppercase;
+        text-align: left;
+        color: #a0a0a0;
+        &.game-toggle {
+          text-align: center;
+        }
+        &:hover {
+          color: #fcfcfc;
+        }
+      }
+      &.game-list-controls {
+        @include background-image(linear-gradient($blue, #376cb3));
+        color: white;
+        border-top: 0;
+      }
+    }
+
+    td:last-child,
+    th:last-child {
+      border-right: 0;
+    }
+
+    @media #{$phone} {
+      td, th {
+        display: none;
+        &.mobile {
+          display: table-cell;
+          a {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 14px;
+          }
+        }
+        &.title {
+          width: 90%;
+          .additional-properties {
+            color: lighten($lightGrey, 20%);
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.game-list.table tr td[contenteditable="true"]:active,
+.game-list.table tr td[contenteditable="true"]:focus{
+  outline:none;
+  color: $textBlue;
+}
+
+
+.filter-row {
+  border-top: 1px solid $darkGrey;
+  position: relative;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  .form-control:focus {
+    color: $textLightGrey;
+    box-shadow: none;
+  }
+  .input-group-addon {
+    background-color: transparent;
+    border: 0;
+    padding: 0 14px 0 0;
+  }
+  padding: 0;
+  .form-group {
+    padding: 14px 14px;
+    position: relative;
+    @media #{$phone} {
+      padding: 6px 6px;
+    }
+
+  }
+  form {
+    padding: 0;
+    margin: 0;
+    input {
+      background-color: transparent;
+      color: $textDarkGrey;
+      border: 0;
+      outline: none;
+      padding: 0;
+      box-shadow: 0;
+      display: block;
+    }
+  }
+}
+
+.show-more {
+  width: 100%;
+  background-color: $darkBlue;
+  color: white;
+  outline: none;
+  border: 0;
+  padding: 10px;
+  &:hover {
+    background-color: darken($darkBlue, 10%);
+  }
+  &:active {
+    background-color: darken($darkBlue, 20%);
+  }
+}
+
+.noeditable-col {
+  a {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

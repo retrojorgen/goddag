@@ -1,0 +1,11 @@
+.clearfix:after {
+  content:" ";
+  display:table;
+  clear:both;
+}
+
+
+.margin-container {
+  max-width: 900px;
+  margin: 0 auto;
+}

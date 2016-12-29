@@ -1,0 +1,80 @@
+<div class="dialog-wrapper" ng-if="toggles.showDialog && collections && collections.collections && collections.collections.length">
+    <div class="dialog-container" id="addgame-form">
+        <div ng-repeat="detail in main">
+            <div class="input-label">{{detail.title}} <span ng-if="detail.description">({{detail.description}})</span></div>
+            <div class="collection-selector-container" click-outside="wipeSearch(detail.key)">
+                <input type="text" class="game-input" ng-model="game[detail.key]" ng-change="indexSearch(detail.key, game[detail.key])" ng-focus="toggles.currentInput = detail.key;">
+
+                <div class="search-wrapper" ng-if="toggles.search[detail.key] && toggles.search[detail.key].length">
+                    <div class="search-container">
+                        <ul class="search-list">
+                            <li ng-repeat="game in toggles.search[detail.key] | limitTo: 14" ng-click="setValueFromSearch(detail.key, game)">
+                                {{game[detail.key]}} <span ng-if="detail.key == 'title'">({{game['console']}})</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-label">Legg til i samling</div>
+        <div class="collection-selector-container" click-outside="toggles.collectionSelector = false;">
+            <ul class="collection-selector-list" ng-click="toggles.collectionSelector = !toggles.collectionSelector">
+                <li class="collection-selector-selected">
+                    <span ng-if="collections.selectedCollection">{{collections.selectedCollection.title}}</span>
+                    <span ng-if="!collections.selectedCollection">Velg samling</span>
+                </li>
+                <li class="collection-selector-choice" ng-click="setSelectedCollection(collection)" ng-repeat="collection in collections.collections" ng-if="toggles.collectionSelector">
+                    {{collection.title}}
+                </li>
+            </ul>
+        </div>
+        <div class="details-wrapper">
+            <div class="details-showbutton-container">
+                <button ng-click="toggles.showDetails = !toggles.showDetails" class="details-showbutton">Vis detaljer</button>
+            </div>
+            <div ng-if="toggles.showDetails" class="details-view">
+                <div ng-repeat="detail in details">
+                    <div class="input-label">{{detail.title}} <span ng-if="detail.description">({{detail.description}})</span></div>
+                    <div class="collection-selector-container">
+                        <input type="text" class="game-input" ng-model="game[detail.key]" ng-change="indexSearch(detail.key, game[detail.key])">
+
+                        <div class="search-wrapper" ng-if="toggles.search[detail.key] && toggles.search[detail.key].length">
+                            <div class="search-container">
+                                <ul class="search-list">
+                                    <li ng-repeat="game in toggles.search[detail.key] | limitTo: 14" ng-click="setValueFromSearch(detail.key, game)">
+                                        {{game[detail.key]}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-label">Bilder av spillet</div>
+        <div class="images-wrapper">
+            <div class="image-wrapper">
+                <div class="image-container">
+
+                    <fileupload upload-file="uploadGamePhoto" reference="$index" class="file-upload-button-container"></fileupload>
+                    <p>Legg til bilde</p>
+                </div>
+            </div>
+            <div class="image-wrapper" ng-repeat="image in game.images">
+                <div class="image-container" ng-style="{
+                    'background-image': 'url(/static/userImages/' + image + '.jpg)'
+                }">
+                    <button class="image-delete-button" ng-click="removeImage(image)"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="dialog-button" ng-click="addGame()" ng-disabled="!game.collectionId || game.title.length == 0">Lagre</button>
+            <button class="dialog-button cancel" ng-click="toggles.showDialog = false;">Avbryt</button>
+        </div>
+    </div>
+</div>
+
+<button class="add-game-button" id="add-game-button" ng-click="toggleAddGameDialog()" ng-if="user && collections && collections.collections && collections.collections.length">+ legg til spill</button>

@@ -1,0 +1,77 @@
+<div class="auth-cover">
+
+    <div class="form-full container front-container">
+        <div class="bottom-image">
+            <img src="/static/images/carts-front.png">
+        </div>
+        <div class="signup-form">
+            <h2 class="form-header">Bli medlem</h2>
+            <div class="form-inner-wrapper">
+                <form ng-submit="submitSignupForm()">
+                    <div class="form-group">
+                        <label for="username-signup">E-postadresse</label>
+                        <div class="input-group" ng-class="{
+                                'has-success': signupEmailStatus == 1,
+                                'has-error': signupEmailStatus == 2 || signupEmailStatus == 3,
+                            }">
+                            <span class="input-group-addon">@</span>
+                            <input ng-model="signupUsername" ng-keyup="typingProxy(checkEmail, signupUsername, 'signupEmail')" class="form-control" id="username-signup" type="text" placeholder="E-postadresse">
+                            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupEmailStatus == 2 || signupEmailStatus == 3"></span>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupEmailStatus == 1"></span>
+                        </div>
+
+                        <div class="alert alert-danger" role="alert" ng-if="signupEmailStatus > 1">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <span ng-if="signupEmailStatus == 2">
+                                Denne e-postadressen har allerede en registrert bruker på seg. Trykk <a ng-href="/login">her for å logge inn.</a>
+                            </span>
+                            <span ng-if="signupEmailStatus == 3">
+                                Dette er ikke en gyldig e-postadresse
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback" ng-class="{
+                        'has-success': signupNickStatus == 1,
+                        'has-error': signupNickStatus == 2,
+                    }">
+                        <label for="nick-signup" class="control-label">Nick</label>
+                            <input ng-model="signupNick" ng-keyup="typingProxy(checkNick, signupNick, 'signupNick')" class="form-control" id="nick-signup" type="text" placeholder="Nick">
+                            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 2"></span>
+                            <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupNickStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupNickStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupNickStatus == 2">
+                            Dette nicket er allerede i bruk
+                        </span>
+                    </div>
+
+                    <div class="form-group has-feedback" ng-class="{
+                        'has-success': signupPasswordStatus == 1,
+                        'has-error': signupPasswordStatus == 2,
+                    }">
+                        <label for="password-signup">Passord</label>
+                        <input ng-model="signupPassword" ng-keyup="typingProxy(checkPassword, signupPassword, 'signupPassword')" class="form-control" id="password-signup" type="password" placeholder="Passord">
+                        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-if="signupPasswordStatus == 2"></span>
+                        <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true" ng-if="signupPasswordStatus == 1"></span>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" ng-if="signupPasswordStatus > 1">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span class="sr-only">Error:</span>
+                        <span ng-if="signupPasswordStatus == 2">
+                            Passordet må være minst 6 tegn
+                        </span>
+                    </div>
+                    <div class="form-controls">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg" ng-disabled="isSignupValid()">Bli medlem</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

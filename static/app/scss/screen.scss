@@ -1,0 +1,37 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass";
+
+#spilldb-logo {
+  margin-left: 0;
+}
+
+@import 'variables.scss';
+@import 'auth.scss';
+@import 'bootstrapOverrides.scss';
+@import 'bottomNavbar.scss';
+@import 'buttons.scss';
+@import 'collection.scss';
+@import 'dialog.scss';
+@import 'flexCols.scss';
+@import 'forms.scss';
+@import 'gamelist.scss';
+@import 'imageGallery.scss';
+@import 'menus.scss';
+@import 'search.scss';
+@import 'tagsAndBrowser.scss';
+@import 'tools.scss';
+@import 'userProfile.scss';
+@import 'userTab.scss';
+@import 'game.scss';
+@import 'slider.scss';
+@import 'gameSearch.scss';
+@import 'userBar.scss';
+@import 'navbar.scss';
+@import 'createCollection.scss';
+@import 'loading.scss';
+@import 'feed.scss';
+@import 'front.scss';

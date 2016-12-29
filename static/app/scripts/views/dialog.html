@@ -1,0 +1,13 @@
+<div class="dialog-wrapper" ng-if="dialog.visible">
+    <div class="dialog-container not-fixed">
+        <p>{{dialog.message}}</p>
+        <div class="button-container" ng-if="!toggles.okayOnly">
+            <button class="dialog-button" ng-click="click(true)">Ja</button>
+            <button class="dialog-button cancel" ng-click="click(false)">Nei</button>
+        </div>
+
+        <div class="button-container" ng-if="toggles.okayOnly">
+            <button class="dialog-button" ng-click="click(true)">okay!</button>
+        </div>
+    </div>
+</div>

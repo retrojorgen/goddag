@@ -1,0 +1,75 @@
+<div class="fluid-container collection-wrapper no-back">
+    <div class="collection-container">
+        <div class="margin-container">
+            <div class="fluid-container collection-header clearfix">
+
+                <div class="profile-photo active" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}" ng-class="{'no-photo': !user.profileImageId || user.profileImageId == ''}">
+                    <fileupload upload-file="uploadProfilePicture" ng-if="toggles.editable" class="file-upload-button-container"></fileupload>
+                </div>
+                <div class="collection-information">
+                    <div class="collection-title">
+                        <p class="kicker">
+                            <span>Bruker</span>
+                        </p>
+                        <h1>{{user.nick}}</h1>
+                    </div>
+                </div>
+            </div>
+
+
+            <ul class="user-menu">
+                <li ng-class="{selected: toggles.usermenu['overview']}"><a ng-href="/user/{{user.slug}}/profile/overview">Om samlingen</a></li>
+                <!--<li ng-class="{selected: toggles.usermenu['photos']}"><a ng-href="/user/{{user.slug}}/profile/photos">Bilder</a></li>-->
+                <li ng-class="{selected: toggles.usermenu['collections']}"><a ng-href="/user/{{user.slug}}/profile/collections">Samling</a></li>
+                <!--<li ng-class="{selected: toggles.usermenu['goals']}"><a ng-href="/user/{{user.slug}}/profile/goals">Samlemål</a></li>-->
+                <!--<li ng-class="{selected: toggles.usermenu['sales']}"><a ng-href="/user/{{user.slug}}/profile/sales">Kjøpslister</a></li>-->
+
+            </ul>
+
+            <div class="user-tab" ng-class="{selected: toggles.usermenu['overview']}">
+                <div class="flexible">
+                    <div class="big-col">
+                        <h2 class="user-tab-title">Om meg og samlingen min</h2>
+                        <div class="user-description">
+                            <div class="add-description-wrapper" ng-if="!toggles.editFlags.description && toggles.editable && !editUser.description">
+                                <button class="add-description-button" ng-click="editField('user description')">Legg til beskrivelse</button>
+                            </div>
+                            <div ng-if="!toggles.editFlags.description && user.description && !toggles.editable" ng-bind-html="user.description">
+                            </div>
+                            <div ng-if="!toggles.editFlags.description && user.description && toggles.editable" ng-click="editField('user description')" ng-bind-html="user.description">
+                            </div>
+                            <div class="editable-wrapper" ng-if="toggles.editFlags.description && toggles.editable" style="display: flex">
+                                <p class="editable description" ng-model="editUser.description" ng-bind-html="user.description" contenteditable="true">
+
+                                </p>
+                                <div class="editable-button-container">
+                                    <button class="editable-action-button" ng-click="saveField('user description')"><span class="glyphicon glyphicon-ok"></span></button>
+                                    <button class="editable-action-button " ng-click="cancelField('user description')"><span class="glyphicon glyphicon-remove"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="medium-col">
+
+                        <h2 class="user-tab-title">Bilder av samlingen
+                            <fileupload icon="'camera'" ng-if="toggles.editable" upload-text="'Legg til '" upload-file="uploadUserPhoto"></fileupload>
+                        </h2>
+                        <div class="user-images">
+
+                            <div ng-repeat="image in user.collectionImages"  class="image-container" ng-style="{
+                            'background-image': 'url(/static/userImages/' + image + '.jpg)'
+                            }">
+                                <div class="gallery-desktop-overlay" ng-click="openGallery(image, user.collectionImages)"></div>
+                                <button ng-if="toggles.editable" ng-if="toggles.editable" class="remove-image" ng-click="removeImage(image)"><span class="glyphicon glyphicon-remove"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <image-gallery gallery-config="imageGalleryConfig">
+
+                </image-gallery>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+userbar {
+    display: inline-block;
+    float: left;
+    width: 280px;
+    height: 50px;
+}
+
+.user-bar {
+    width: 280px;
+    position: relative;
+    float: left;
+    @media #{$phone} {
+        float: none;
+        width: 150px;
+    }
+    &.expanded {
+
+        ul {
+            height: auto;
+            li {
+                &.current-collection {
+                    &:after {
+                        @include transform(rotate(-180deg) translateY(2px));
+                        @include transition(0.1s);
+                    }
+                    @media #{$phone} {
+                        background-color: $darkGrey;
+                        span {
+                            width: 80%;
+                        }
+
+                    }
+                }
+            }
+        }
+        @media #{$phone} {
+            position: absolute;
+            left: 0;
+            width: 100%;
+        }
+
+    }
+    ul {
+        position: absolute;
+        left: 0;
+        top: 0;
+        min-width: 100%;
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        z-index: 100;
+
+        @media #{$phone} {
+        }
+
+        @include transition(0.1s);
+        li {
+            display: block;
+            width: 100%;
+            font-size: 14px;
+            position: relative;
+            .collection-image {
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                background-size: cover;
+                left: 16px;
+                top: 50%;
+                margin-top: -15px;
+                border-radius: 10px;
+                background-color: $darkGrey;
+            }
+            @media #{$phone} {
+                font-size: 12px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+            &.current-collection {
+                padding: 15px;
+                cursor:pointer;
+                background-color: $darkGrey;
+                border-right: 1px solid $darkDarkGrey;
+                position: relative;
+                span {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 226px;
+                    display: inline-block;
+                    @media #{$phone} {
+                        width: 110px;
+                    }
+                }
+                @media #{$phone} {
+                    padding: 16px 20px 17px 15px;
+                }
+                &:hover {
+                    background-color: $darkDarkGrey;
+                    color: white;
+                }
+                &:after {
+                    top: 50%;
+                    right: 10px;
+                    border: solid transparent;
+                    content: " ";
+                    height: 0;
+                    width: 0;
+                    position: absolute;
+                    pointer-events: none;
+                    border-color: rgba(52, 152, 219, 0);
+                    border-top-color: #3498DB;
+                    border-width: 4px;
+                    margin-left: -8px;
+                    margin-top: -2px;
+                    @include transform(rotate(0deg));
+                    @include transition(0.25s);
+                }
+            }
+            a {
+                padding: 15px 15px 15px 60px;
+                display: block;
+
+
+                background-color: $darkDarkGrey;
+                @media #{$phone} {
+                    font-size: 12px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+                &:hover {
+                    background-color: $darkGrey;
+                    color: white;
+                    .collection-image {
+                        background-color: $darkDarkGrey;
+                    }
+                }
+            }
+
+            &.new-collection-item {
+                a {
+                    background-color: $blue;
+                }
+            }
+
+        }
+
+    }
+}

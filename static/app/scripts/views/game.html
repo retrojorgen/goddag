@@ -1,0 +1,178 @@
+
+<div class="fluid-container collection-wrapper">
+    <a class="back-to" ng-href="/user/{{user.slug}}/c/{{collection._id}}">
+        <span class="glyphicon glyphicon-menu-left"></span>
+        Til samlingen {{collection.title}}
+    </a>
+    <div class="fluid-container collection-container">
+        <div class="margin-container">
+
+
+            <!-- normal view -->
+            <div class="user-tab game-tab" ng-class="{selected: true}" ng-if="!toggles.editView">
+                <div class="owner">
+
+                    <p>
+                        Eier <a ng-href="/user/{{user.slug}}">{{user.nick}}</a>
+                    </p>
+                </div>
+                <div class="flexible">
+                    <div class="big-col">
+
+                        <h2 class="user-tab-title">
+                            {{game.title}}
+                            <span class="title-console" ng-if="game.console">({{game.console}})</span>
+                        </h2>
+
+                        <table class="game-attributes-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    <th>
+                                        Egenskap
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(gameAttribute, key) in game"
+                                    ng-if="
+                                        gameAttribute != '_id' &&
+                                        gameAttribute != 'userId' &&
+                                        gameAttribute != 'collectionId' &&
+                                        gameAttribute != 'title' &&
+                                        gameAttribute != '__v' &&
+                                        gameAttribute != 'images' &&
+                                        gameAttribute != 'gameAdded' &&
+                                        gameAttribute != '' &&
+                                        gameAttribute != 'status'
+
+                                    ">
+                                    <td>
+                                        {{settings[gameAttribute].name}}
+                                    </td>
+                                    <td>
+                                        {{key}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="medium-col">
+                        <h2 class="user-tab-title">Bilder
+                        </h2>
+
+                        <div class="user-images">
+
+                            <div ng-repeat="image in game.images"  class="image-container">
+                                <img ng-src="/static/userImages/{{image}}.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- game view end -->
+
+            <div class="dialog-wrapper" ng-if="toggles.editView">
+                <div class="dialog-container game-update-dialog" id="addgame-form">
+                    <div class="input-label">Legg til i samling</div>
+                    <div class="collection-selector-container">
+                        <ul class="collection-selector-list" ng-click="toggles.collectionSelector = !toggles.collectionSelector">
+                            <li class="collection-selector-selected">
+                                <span ng-if="collections.selectedCollection">{{collections.selectedCollection.title}}</span>
+                                <span ng-if="!collections.selectedCollection">Velg samling</span>
+                            </li>
+                            <li class="collection-selector-choice" ng-click="setSelectedCollection(collection)" ng-repeat="collection in collections.collections" ng-if="toggles.collectionSelector">
+                                {{collection.title}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-repeat="(key, detail) in editGame"
+                         ng-if="
+                            key == 'title' ||
+                            key == 'console'
+                         ">
+                        <div class="input-label">{{settings[key].name}} <span ng-if="settings[key].description">({{settings[key].description}})</span></div>
+                        <div class="collection-selector-container">
+                            <input type="text" class="game-input" ng-model="editGame[key]" ng-change="indexSearch(key, editGame[key])">
+
+                            <div class="search-wrapper" ng-if="toggles.search[key] && toggles.search[key].length">
+                                <div class="search-container">
+                                    <ul class="search-list">
+                                        <li ng-repeat="game in toggles.search[key] | limitTo: 14" ng-click="setValueFromSearch(key, game)">
+                                            {{game[key]}} <span ng-if="key == 'title'">({{game['console']}})</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details-wrapper">
+                        <div class="details-showbutton-container">
+                            <button ng-click="toggles.showDetails = !toggles.showDetails" class="details-showbutton">Vis detaljer</button>
+                        </div>
+                        <div ng-if="toggles.showDetails" class="details-view">
+                            <div ng-repeat="(key, detail) in editGame" ng-if="
+                                    key == 'publisher' ||
+                                    key == 'front'||
+                                    key == 'back'||
+                                    key == 'region'||
+                                    key == 'condition'
+                                ">
+                                <div class="input-label">{{settings[key].name}} <span ng-if="settings[key].description">({{settings[key].description}})</span></div>
+                                <div class="collection-selector-container">
+                                    <input type="text" class="game-input" ng-model="editGame[key]" ng-change="indexSearch(key, game[key])">
+
+                                    <div class="search-wrapper" ng-if="toggles.search[key] && toggles.search[key].length">
+                                        <div class="search-container">
+                                            <ul class="search-list">
+                                                <li ng-repeat="game in toggles.search[key] | limitTo: 14" ng-click="setValueFromSearch(key, game)">
+                                                    {{game[key]}}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-label">Bilder av spillet</div>
+                    <div class="images-wrapper">
+                        <div class="image-wrapper">
+                            <div class="image-container">
+
+                                <fileupload upload-file="uploadGamePhoto" reference="$index" class="file-upload-button-container"></fileupload>
+                                <p>Legg til bilde</p>
+                            </div>
+                        </div>
+                        <div class="image-wrapper" ng-repeat="image in editGame.images">
+                            <div class="image-container">
+                                <button class="image-delete-button" ng-click="removeImage(image)"><span class="glyphicon glyphicon-remove"></span></button>
+                                <img ng-if="image" ng-src="static/userImages/{{image}}.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="update-button-container" ng-if="toggles.editable">
+                <div ng-if="!toggles.editView">
+                    <button ng-click="deleteGame()" class="delete">Slett</button>
+                    <button ng-click="toggleEditGameView()" class="edit">Endre</button>
+                </div>
+                <div ng-if="toggles.editView">
+                    <button ng-click="updateGame()" class="update">Oppdater</button>
+                    <button ng-click="toggleEditGameView()" class="cancel">Lukk</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

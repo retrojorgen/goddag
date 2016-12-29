@@ -1,0 +1,20 @@
+<div class="auth-cover">
+    <div class="form-full container">
+
+        <div class="signup-form">
+            <h2 class="form-header">Hei {{user.nick}}, lag en avatar</h2>
+            <h3 class="form-description">Last opp et bilde eller velg fra våre ferdigavatarer</h3>
+            <div class="form-inner-wrapper">
+                <fileupload upload-file="uploadProfilePicture" ng-if="user" class="file-upload-button-container"></fileupload>
+                <div class="profile-photo" ng-style="{'background-image': 'url(/static/userImages/' + user.profileImageId + '.jpg)'}" ng-class="{'no-photo': !user.profileImageId || user.profileImageId == ''}">
+                </div>
+                <ul class="avatar-list">
+                    <li class="avatar-thumb-container" ng-repeat="key in [1,2,3,4,5,6]"><div ng-class="{selected: user.profileImageId.charAt(user.profileImageId.length-1) == key}" class="avatar-thumb avatar-{{key}}" ng-click="setAvatar(key)"></div></li>
+                </ul>
+
+
+                <a ng-href="/wizard/collection" class="btn btn-primary btn-block btn-lg">Neste</a>
+            </div>
+        </div>
+    </div>
+</div>

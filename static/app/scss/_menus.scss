@@ -1,0 +1,106 @@
+.context-menu {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border: 0;
+  outline: none;
+  color: #376cb3;
+  background-color: transparent;
+  &.selected {
+    background-color: #376cb3;
+    color: white;
+  }
+}
+
+
+.context-menu-list {
+  position: absolute;
+  left: 0px;
+  bottom: 15px;
+  padding: 0;
+  min-width: 200px;
+  text-align: left;
+  letter-spacing: 0px;
+  display: block;
+  color: white;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  list-style: none;
+  z-index: 10;
+  box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+
+  li {
+    display: block;
+    padding: 4px;
+    font-weight: normal;
+    border-bottom: 1px solid black;
+    font-weight: normal;
+    cursor: pointer;
+    background-color: #376cb3;
+    &:hover {
+      background-color: lighten(#376cb3, 5%);
+    }
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.main-menu {
+  li {
+    border-right: 1px solid rgba(255, 255, 255, .15);
+    cursor: pointer;
+    text-transform: uppercase;
+    a {
+      cursor: pointer;
+    }
+    &:hover {
+      background-color: darken(#23323b, 10%);
+    }
+  }
+}
+
+
+.user-menu {
+
+  border-bottom: 1px solid $lightGrey;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: inline-block;
+    position: relative;
+    color: $textDarkGrey;
+
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    font-size: 11px;
+    @include transition(0.25s);
+    cursor: pointer;
+    a {
+      padding: 10px 14px;
+      display: block;
+    }
+    &:after {
+      content :"";
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      bottom: -1px;
+      background-color: transparent;
+      left: 0;
+      @include transition(0.25s);
+    }
+    &.selected {
+      color: $textLightGrey;
+      &:after {
+        background-color: $textBlue;
+        @include transition(0.25s);
+      }
+
+    }
+    &:hover {
+      color: $textLightGrey;
+    }
+  }
+}

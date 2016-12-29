@@ -1,0 +1,112 @@
+.game-tab {
+
+  @media #{$phone} {
+    margin-top: 0;
+  }
+  .owner {
+
+    @media #{$phone} {
+      margin: 0 -23px 0 -23px;
+      background-color: rgba(255,255,255,0.2);
+      padding: 7px 23px 7px 23px;
+      text-align: center;
+    }
+
+    h2 {
+
+    }
+    p {
+      margin: 0;
+      color: $blue;
+    }
+  }
+  .user-tab-title {
+    font-size: 28px;
+    @media #{$phone} {
+      font-size: 26px;
+    }
+    .title-console {
+      color: $blue;
+      font-size: 28px;
+      margin-left: 10px;
+      @media #{$phone} {
+        font-size: 20px;
+      }
+    }
+  }
+
+
+}
+
+
+
+
+.game-attributes-table {
+  width: 100%;
+  table-layout: fixed;
+  th,td {
+    padding: 4px;
+    min-height: 25px;
+  }
+
+  th:nth-child(2) {
+    width: 74%;
+  }
+  thead {
+    border-bottom: 1px solid rgba(255,255,255, 0.2);
+    margin-bottom: 4px;
+  }
+  tbody {
+    tr:nth-child(odd) {
+      background-color: rgba(255,255,255,0.1);
+    }
+  }
+}
+
+
+
+.update-button-container {
+  text-align: center;
+  position: fixed;
+  left:0;
+  bottom: 0;
+  width: 100%;
+  background-color: $darkDarkGrey;
+  padding: 8px;
+  z-index: 10002;
+
+  button {
+    border-radius: 4px;
+    background-color: $blue;
+    color: white;
+    padding: 8px 40px;
+    text-transform: uppercase;
+    border: 0;
+    outline: none;
+    &:hover {
+      background-color: darken($blue, 10%);
+    }
+    &:active {
+      background-color: darken($blue, 20%);
+    }
+    &.delete {
+      background-color: red;
+    }
+    &.cancel {
+      background-color: white;
+
+      color: $blue;
+      &:hover {
+        background-color: white;
+      }
+      &:active {
+        background-color: white;
+      }
+    }
+  }
+}
+
+.game-update-dialog {
+  padding-top: 14px;
+  text-align: center;
+}

@@ -1,0 +1,113 @@
+.game-search-wrapper {
+    float: left;
+    border-right: 1px solid $darkDarkGrey;
+    padding: 7px 10px 5px 10px;
+    position: relative;
+    @media #{$phone} {
+        position: absolute;
+        left: 0;
+        top: 50px;
+        width: 100%;
+        background-color: $darkGrey;
+        border-top: 1px solid $darkDarkGrey;
+        border-bottom: 1px solid $darkDarkGrey;
+        opacity: 0;
+        padding: 0;
+        display: none;
+    }
+    &.game-search-show-mobile {
+        @media #{$phone} {
+            display: block;
+            opacity: 1;
+        }
+    }
+}
+
+.mobile-search-button-wrapper {
+    display: none;
+    @media #{$phone} {
+        display: block;
+        padding: 16px;
+        cursor: pointer;
+
+        &.selected {
+            background-color: $darkBackground;
+        }
+        .mobile-search-button {
+            font-size: 14px;
+            outline: none;
+            border: 0;
+            background-color: transparent;
+        }
+    }
+
+}
+
+.game-search-container {
+    background-color: $darkBackground;
+    border-radius: 8px;
+    position: relative;
+    .glyphicon {
+        position: absolute;
+        right: 10px;
+        top: 14px;
+        @media #{$phone} {
+            display: none;
+        }
+    }
+    input {
+        background-color: transparent;
+        border: 0;
+        font-size: 16px;
+        padding: 8px 34px 8px 8px;
+        width: 400px;
+        outline: none;
+        @media #{$phone} {
+            width: 100%;
+            padding: 8px 14px 8px 14px;
+        }
+    }
+}
+
+.game-search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: $darkBackground;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .results-counter {
+        background-color: $darkGrey;
+        color: white;
+        padding: 10px 14px;
+    }
+    .results {
+        position: relative;
+        a {
+            color: $textGrey;
+            padding: 10px 10px 10px 28px;
+            cursor: pointer;
+            display: block;
+        }
+        .glyphicon {
+            margin-right: 6px;
+            vertical-align: middle;
+            position: absolute;
+            left: 9px;
+            top: 50%;
+            margin-top: -6px;
+        }
+        .game-title {
+            font-size: 14px;
+            color: white;
+        }
+        .additional-properties {
+            font-size: 10px;
+        }
+        &:hover {
+            background-color: $darkGrey;
+        }
+    }
+}

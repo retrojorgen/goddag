@@ -1,0 +1,81 @@
+doctype html
+html(lang="en")
+    head
+        base(href="/")
+        meta(charset="utf-8")
+        meta(name="viewport",content="width=device-width, initial-scale=1")
+        title SamleDB
+        script(src="/static/bower_components/jquery/dist/jquery.js")
+        script(src="/static/bower_components/bootstrap/dist/js/bootstrap.js")
+        script(src="/static/bower_components/angular/angular.js")
+        script(src="/static/bower_components/angular-route/angular-route.js")
+        script(src="/static/bower_components/angular-animate/angular-animate.js")
+        script(src="/static/bower_components/moment/moment.js")
+        script(src="/static/bower_components/angular-click-outside/clickoutside.directive.js")
+        script(src="/static/bower_components/moment/locale/nb.js")
+        script(src="/static/bower_components/angular-moment/angular-moment.js")
+        script(src="/static/bower_components/angular-sanitize/angular-sanitize.js")
+        script(src="/static/bower_components/angular-bootstrap/ui-bootstrap.js")
+        script(src="/static/bower_components/a0-angular-storage/dist/angular-storage.js")
+
+        script(src="/static/bower_components/underscore/underscore.js")
+        script(src="/static/bower_components/angular-elastic-input/dist/angular-elastic-input.js")
+        script(src="/static/bower_components/angular-underscore-module/angular-underscore-module.js")
+        link(rel="stylesheet",type="text/css",href="/static/bower_components/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet",href="https://fonts.googleapis.com/css?family=Open+Sans")
+        link(rel="stylesheet",type="text/css",href="/static/css/screen.css?v.0.0.1")
+        link(rel="apple-touch-icon",href="/static/images/samledb-144x144.png")
+        link(rel="icon",type="image/png",href="/static/images/samledb-40x40.png")
+        style
+            |.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+    body(ng-app="spilldb" ng-class="{'logged-in-theme': user}")
+        gamedialog(class="test")
+        div(ng-class="{visible: visible}")
+        nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb", ng-class="{visible: user}")
+                    a(id="spilldb-logo",class="navbar-brand",href="/")
+                        div(class="spilldb-logo")
+                    userbar
+                    gamesearch
+                    auth(class="auth pull-right")
+        nav(class="navbar navbar-default navbar-static-top navbar-inverse navbar-samledb-not-logged-in", ng-class="{visible: !user}")
+
+                            div(class="login-buttons-container")
+                                a(href="/login", class="btn btn-default navbar-btn login")
+                                    | Logg inn
+                                a(href="/signup", class="btn btn-default navbar-btn signup")
+                                    | Bli medlem
+
+
+        div(class="main-container", ng-class="{visible: visible}")
+            ng-view
+
+        addgame
+        loading
+        script(src="/static/app/scripts/app.js?v.0.0.1")
+        script(src="/static/app/scripts/services/eventHandler.js?v.0.0.1")
+        script(src="/static/app/scripts/services/authService.js?v.0.0.1")
+        script(src="/static/app/scripts/components/resetPassword.js?v.0.0.1")
+        script(src="/static/app/scripts/components/user.js?v.0.0.1")
+        script(src="/static/app/scripts/components/userbar.js?v.0.0.1")
+        script(src="/static/app/scripts/components/userlist.js?v.0.0.1")
+        script(src="/static/app/scripts/components/feed.js?v.0.0.1")
+        script(src="/static/app/scripts/components/signup.js?v.0.0.1")
+        script(src="/static/app/scripts/components/auth.js?v.0.0.1")
+        script(src="/static/app/scripts/components/login.js?v.0.0.1")
+        script(src="/static/app/scripts/components/logout.js?v.0.0.1")
+        script(src="/static/app/scripts/components/dialog.js?v.0.0.1")
+        script(src="/static/app/scripts/components/fileUpload.js?v.0.0.1")
+        script(src="/static/app/scripts/components/dialogService.js?v.0.0.1")
+        script(src="/static/app/scripts/components/game.js?v.0.0.1")
+        script(src="/static/app/scripts/components/imageGallery.js?v.0.0.1")
+        script(src="/static/app/scripts/components/createCollection.js?v.0.0.1")
+        script(src="/static/app/scripts/components/createProfilePhoto.js?v.0.0.1")
+        script(src="/static/app/scripts/components/loading.js?v.0.0.1")
+        script(src="/static/app/scripts/components/hamburger.js?v.0.0.1")
+        script(src="/static/app/scripts/components/addGame.js?v.0.0.1")
+        script(src="/static/app/scripts/components/flush.js?v.0.0.1")
+        script(src="/static/app/scripts/components/gameSearch.js?v.0.0.1")
+        script(src="/static/app/scripts/directives/search.js?v.0.0.1")
+        script(src="/static/app/scripts/directives/contenteditable.js?v.0.0.1")
+        script(src="/static/app/scripts/directives/fileDropzone.js?v.0.0.1")

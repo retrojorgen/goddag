@@ -1,0 +1,49 @@
+.user-profile {
+  position: relative;
+  height: 50px;
+  padding-right: 15px;
+  cursor: pointer;
+  @media #{$phone} {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-left: 14px;
+  }
+
+  &:hover {
+    background-color: $darkDarkGrey;
+    .attribute-list {
+      display: block;
+    }
+  }
+
+  .attribute-list {
+    position: absolute;
+    display: none;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @media #{$phone} {
+      width: 140px;
+      right: 0;
+      left: auto;
+    }
+    li {
+
+      text-align: left;
+
+      a {
+        display: block;
+        padding: 10px 10px 10px 14px;
+        background-color: $darkDarkGrey;
+        cursor: pointer;
+        &:hover {
+          background-color: darken($darkDarkGrey, 10%);
+        }
+      }
+    }
+  }
+}

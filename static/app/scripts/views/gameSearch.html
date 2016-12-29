@@ -1,0 +1,40 @@
+<div class="mobile-search-button-wrapper" ng-if="user" ng-click="toggleSearchMobile()" ng-class="{selected : toggles.showSearchMobile}">
+    <button class="mobile-search-button glyphicon glyphicon-search"></button>
+</div>
+<div class="game-search-wrapper" ng-if="user" ng-class="{'game-search-show-mobile': toggles.showSearchMobile}">
+    <form>
+        <div class="game-search-container">
+            <input type="text" ng-model="toggles.searchInput" placeholder="Søk i dine spill, konsoller, koder, notater..">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </form>
+
+    <ul class="game-search-results" ng-if="toggles.searchInput.length > 2">
+        <li class="results-counter">
+            Søk etter "{{toggles.searchInput}}"
+        </li>
+        <li class="results" ng-repeat="game in gamesSearchResults | filter: toggles.searchInput | limitTo: 14">
+            <a ng-href="/user/{{user.slug}}/c/{{game.collectionId}}/g/{{game._id}}" ng-click="wipeSearch(); toggleSearchMobile();">
+                <span class="glyphicon glyphicon-search"></span>
+                <div class="game-title">{{game.title}}</div>
+                <div class="additional-properties" ng-if="
+                    game['console'] ||
+                    game['publisher'] ||
+                    game['front'] ||
+                    game['back'] ||
+                    game['region'] ||
+                    game['condition']
+                    ">
+                    <span ng-if="game['console']">{{game['console']}} &#183;</span>
+                    <span ng-if="game['publisher']">{{game['publisher']}} &#183;</span>
+                    <span ng-if="game['front']">{{game['front']}} &#183;</span>
+                    <span ng-if="game['back']">{{game['back']}} &#183;</span>
+                    <span ng-if="game['region']">{{game['region']}} &#183;</span>
+                    <span ng-if="game['condition']">{{game['condition']}}</span>
+                </div>
+            </a>
+        </li>
+
+    </ul>
+
+</div>

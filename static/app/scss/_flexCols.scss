@@ -1,0 +1,37 @@
+.flexible {
+  display: flex;
+  .big-col {
+    width: 100%;
+    padding: 0 10px 0 0;
+    min-width: 614px;
+    @media #{$phone} {
+      min-width: auto;
+      .user-description {
+      }
+    }
+    .user-description {
+      max-width: 600px;
+      margin: 0 14px;
+    }
+  }
+  .medium-col {
+    padding: 0 0 0 10px;
+    min-width: 286px;
+    @media #{$phone} {
+      min-width: auto;
+    }
+
+  }
+  @media #{$phone} {
+    display: block;
+    .big-col {
+      width: 100%;
+      padding: 0 10px 0 10px;
+    }
+    .medium-col {
+      width: 100%;
+      padding: 0 10px 0 10px;
+    }
+  }
+}
+

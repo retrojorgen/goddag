@@ -1,0 +1,130 @@
+.navbar {
+  background-color: $darkGrey;
+  margin-bottom: 0;
+  @include box-shadow(0 0 10px 1px rgba(0,0,0,0.6));
+}
+
+.btn {
+  //border-radius: 0;
+}
+.form-control {
+  //border-radius: 0;
+}
+
+
+.close.inverse {
+  color: #fff;
+  opacity: 1;
+}
+
+.btn {
+  border-radius: 4px;
+  font-size: 100%;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  outline: none;
+
+}
+
+.navbar-text {
+  @media #{$phone} {
+    margin-right: 10px;
+    display: inline-block;
+    span {
+      display: none;
+    }
+  }
+}
+
+.navbar-form {
+  border-top: 0;
+  border-bottom: 0;
+  @include box-shadow(0 0 0 0 rgba(0,0,0,0));
+}
+
+.navbar-samledb {
+  border: 0;
+  @media #{$phone} {
+    display: flex;
+    z-index: 2000;
+    .auth {
+      margin-left: 14px;
+      width: 100%;
+    }
+  }
+}
+
+.input-label {
+  text-transform: uppercase;
+  color: $blue;
+  text-align: left;
+  font-size: 10px;
+  margin: 4px 0 4px 0;
+}
+
+.navbar-brand {
+  background-color: $blue;
+  &:hover {
+    background-color: $blue;
+  }
+  @media #{$phone} {
+    padding: 10px;
+    background-color: transparent;
+    border-right: 1px solid $darkDarkGrey;
+  }
+  .spilldb-logo {
+    position: relative;
+    width: 90px;
+    height: 24px;
+    background-image: url("../images/samledb-hvit.svg");
+    background-size: 100% auto;
+    &:after {
+      content: "beta 0.0.1";
+      color: white;
+      font-size: 8px;
+      position: absolute;
+      top: 18px;
+      left: 23px;
+      @media #{$phone} {
+        top: 23px;
+        left: 8px;
+        width: 40px;
+      }
+    }
+    @media #{$phone} {
+      background-image: url("../images/samledbmobilelogohvit.svg");
+      background-size: 100% auto;
+      background-position: 0 6px;
+      background-repeat: no-repeat;
+      width: 50px;
+      height: 50px
+
+    }
+  }
+}
+
+.form-control {
+  font-size: 16px;
+
+}
+
+.navbar-static-top {
+  z-index: 8000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  @include transform(translateY(-60px));
+  @include transition(0.25s ease-in-out);
+  &.visible {
+    @include transform(translateY(0px));
+    @include transition(0.25s ease-in-out);
+  }
+}
+
+.navbar-samledb-not-logged-in {
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+}

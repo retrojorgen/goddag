@@ -1,0 +1,333 @@
+.collection-header {
+  margin: 0 -14px 14px -14px;
+  position: relative;
+  overflow: hidden;
+  padding: 50px 14px 14px 14px;
+  display: flex;
+  @media #{$phone} {
+    display: block;
+    text-align: center;
+  }
+
+  .control-buttons {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+  }
+
+  .collection-photo-cloak {
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background-color: black;
+    filter: blur(40px);
+    left: -25%;
+    top: -25%;
+    opacity: 0.1;
+    @media #{$phone} {
+
+      opacity: 0.3;
+    }
+  }
+  .collection-photo,
+  .profile-photo {
+    background-color: transparent;
+    background-size: cover;
+    position: relative;
+    background-repeat: no-repeat;
+    width: 210px;
+    height: 210px;
+    display: block;
+    border-radius: 20px;
+    margin-right: 14px;
+    @media #{$phone} {
+      display: inline-block;
+      margin-right: 0;
+    }
+    &.no-photo {
+      border: 1px solid $transparentWhite;
+      .file-upload-button-container {
+        display: inline-block;
+      }
+    }
+    &:hover {
+      .file-upload-button-container {
+        display: inline-block;
+      }
+    }
+
+    .file-upload-button-container {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      margin-top: -34px;
+      margin-left: -34px;
+      @media #{$phone} {
+        display: inline-block;
+        margin: 0;
+        top: 0;
+        right: 0;
+        left: auto;
+      }
+
+      .upload-photo-button {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        background-color: rgba(0,0,0,0.6);
+        color: white;
+        border: 0;
+        font-size: 20px;
+        padding: 12px;
+        outline: none;
+        border-radius: 20px;
+        margin: -1px;
+        border: 1px solid $transparentWhite;
+        &:before {
+          content: "\e046";
+        }
+      }
+    }
+  }
+
+
+  .collection-information {
+    min-width: 60%;
+  }
+
+  .collection-title {
+    position: relative;
+    color: white;
+    outline: none;
+    .kicker {
+      text-transform: uppercase;
+      margin-bottom: 0;
+      color: $textDarkGrey;
+    }
+    .byline {
+      color: $textDarkGrey;
+      font-size: 14px;
+    }
+    .description {
+      font-size: 16px;
+      color: $textDarkGrey;
+    }
+    h1 {
+      display: inline-block;
+      outline: none;
+      margin: 0;
+      padding: 14px 0 14px;
+      font-size: 38px;
+      @include text-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+      @media #{$phone} {
+        font-size: 22px;
+        font-weight: bold;
+      }
+    }
+  }
+  .collection-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+}
+
+.collection-edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 14px;
+  width: 100%;
+
+  background-color: $textDarkGrey;
+  @include box-shadow(2px 2px 4px rgba(0,0,0,0.4));
+  @include translateY(-100%);
+  z-index: 10000;
+  @include transition(0.25s ease-in-out);
+  &.visible {
+    @include translateX(0%);
+  }
+
+  label {
+    color: darken($textDarkGrey, 40%);
+  }
+  form {
+    margin-top: 14px;
+  }
+}
+
+
+.editable-wrapper {
+  border-bottom: 2px solid $blue;
+  background-color: #0D3349;
+  margin-bottom: 30px;
+  position: relative;
+  outline: none;
+  >* {
+    outline: none;
+  }
+  .editable-button-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    text-align: right;
+  }
+  .editable-action-button {
+    font-size: 11px;
+    color: black;
+    padding: 6px 8px;
+    border: 0;
+    cursor: pointer;
+    background-color: #3498db;
+    outline: none;
+  }
+
+}
+
+.collection-wrapper {
+  border-left: 0 solid transparent;
+  border-top: 50px solid transparent;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  box-shadow: 0px 0px 20px rgba(0,0,0,0.4);
+  padding: 14*4px 0 80px 0;
+  &.no-back {
+    border-top: 50px solid transparent;
+    padding-top: 0;
+  }
+  &.no-space-top {
+    padding-top: 0;
+  }
+
+  @media #{$phone} {
+    border-top: 52px solid transparent;
+    padding-top: 34px;
+  }
+
+  .collection-container {
+    background-color: $darkBackground;
+    padding: 0 14px 0 14px;
+  }
+
+}
+
+.collection-list-header {
+  margin-top: 10px;
+  color: $textDarkGrey;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+.collection-list-item {
+    &.add-list-button {
+      background-color: $blue;
+      color: white;
+      padding: 15px;
+      cursor:pointer;
+      &:hover {
+        background-color: darken($blue, 10%);
+      }
+      &:active {
+        background-color: darken($blue, 20%);
+      }
+    }
+}
+
+.add-description-wrapper {
+  margin-bottom: 14px;
+}
+
+
+.collection-selector-container {
+  background-color: $darkDarkGrey;
+  border: 1px solid $blue;
+  margin-bottom: 20px;
+  position: relative;
+  font-size: 16px;
+  .game-input {
+    font-size: 16px;
+    background-color: transparent;
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    margin: 0;
+    outline: none;
+  }
+  .search-wrapper {
+    border-left: 1px solid $blue;
+    border-bottom: 1px solid $blue;
+    border-right: 1px solid $blue;
+    text-align: left;
+  }
+  .collection-selector-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($darkDarkGrey, 10%);
+      }
+      @media #{$phone} {
+        font-size: 16px;
+      }
+    }
+    .collection-selector-selected {
+      position: relative;
+      &:after {
+        top: 50%;
+        right: 10px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(52, 152, 219, 0);
+        border-top-color: #3498DB;
+        border-width: 4px;
+        margin-left: -8px;
+        margin-top: -2px;
+        @include transform(rotate(0deg));
+        @include transition(0.25s);
+      }
+    }
+  }
+}
+
+.back-to {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: rgba(0,0,0,0.4);
+  font-size: 10px;
+  z-index: 400;
+
+  @media #{$phone} {
+    display: block;
+    width: 100%;
+    background-color: $blue;
+  }
+}

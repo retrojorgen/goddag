@@ -1,0 +1,23 @@
+    <div class="image-gallery-wrapper" ng-class="{active: galleryConfig.on}">
+    <div class="image-gallery-cloak">
+
+    </div>
+
+    <div class="image-gallery-container">
+
+        <div class="image-gallery-image" ng-repeat="image in galleryConfig.imageGallery" ng-class="{current: image == galleryConfig.current}">
+            <img src="/static/userImages/{{image}}.jpg">
+        </div>
+    </div>
+    <div class="image-gallery-buttons">
+        <button class="close-button gallery-button" ng-click="closeGallery()"><span class="glyphicon glyphicon glyphicon-remove"></span></button>
+        <button class="prev-button gallery-button"><span class="glyphicon glyphicon-chevron-left"></span></button>
+        <button class="next-button gallery-button" ng-click="nextButton()"><span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+
+    <div class="image-gallery-thumbnails">
+        <div class="image-gallery-thumbnail" ng-repeat="image in galleryConfig.imageGallery">
+            <img src="/static/userImages/{{image}}.jpg">
+        </div>
+    </div>
+</div>

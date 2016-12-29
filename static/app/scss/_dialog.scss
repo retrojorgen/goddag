@@ -1,0 +1,168 @@
+.dialog-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 4004;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  @media #{$phone} {
+    justify-content: flex-start;
+    overflow:auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dialog-container {
+    @include border-radius(6px);
+  }
+  .cloak {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-top: 50px solid transparent;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+  label {
+    color: #798790;
+  }
+  .game-title {
+    color: white;
+  }
+  .form-group {
+    color: #798790;
+  }
+  .dialog-tabs {
+    display: flex;
+    li {
+      display: block;
+      background-color: #435359;
+      color: #798790;
+      width: 100%;
+      &.active {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        color: #fff;
+      }
+    }
+
+    margin-bottom: 0;
+    width: 100%;
+    padding: 0;
+
+  }
+  .input-group {
+    width: 100%;
+    span {
+      color: #798790;
+    }
+  }
+  .form-control {
+    border: 1px solid #798790;
+    color: #798790;
+    background-color: transparent;
+  }
+  .form-control-feedback {
+
+    &.glyphicon-remove {
+      color: red;
+    }
+    &.glyphicon-ok {
+      color: green;
+    }
+  }
+  .dialog-container {
+    max-width: 100%;
+    width: 400px;
+    position: relative;
+    background-color: #23323b;
+    border: 1px solid lighten(#23323b, 20%);
+    padding: 20px;
+    color: white;
+    text-align: center;
+    max-height: 80%;
+    overflow-y: auto;
+    @media #{$phone} {
+      border-radius: 0;
+      border: 0;
+      min-height: 100%;
+      width: 100%;
+      z-index: 10001;
+      padding-top: 70px;
+      padding-bottom: 70px;
+      &.not-fixed {
+        border: 1px solid lighten(#23323b, 20%);
+        max-width: 90%;
+        border: 1px solid lighten(#23323b, 20%);
+        min-height: auto;
+        border-radius: 10px;
+        margin: 0 auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .button-container {
+          @media #{$phone} {
+            position: relative;
+            bottom: auto;
+            background-color: transparent;
+            margin: 0;
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+  .button-container {
+    text-align: center;
+    @media #{$phone} {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: $darkDarkGrey;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 8px;
+
+    }
+    button {
+      border-radius: 4px;
+      background-color: $blue;
+      color: white;
+      padding: 8px 40px;
+      text-transform: uppercase;
+      border: 0;
+      outline: none;
+      &:hover {
+        background-color: darken($blue, 10%);
+      }
+      &:active {
+        background-color: darken($blue, 20%);
+      }
+      &.cancel {
+        background-color: white;
+
+        color: $blue;
+        &:hover {
+          background-color: white;
+        }
+        &:active {
+          background-color: white;
+        }
+      }
+    }
+  }
+  .btn {
+    text-transform: uppercase;
+  }
+}

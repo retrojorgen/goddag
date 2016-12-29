@@ -1,0 +1,21 @@
+<div id="user-bar" class="user-bar" ng-if="user" ng-click="toggleExpanded()" ng-class="{
+    'expanded': expanded
+}">
+        <ul class="collection-list">
+            <li class="current-collection">
+                <span ng-if="currentCollection">{{currentCollection.title}}</span>
+                <span ng-if="!currentCollection">Velg samling</span>
+            </li>
+            <li class="collection-list-item" ng-if="list._id != currentCollection._id" ng-repeat="list in collections['collections']" ng-class="{selected: list.selected}">
+                <div class="collection-image" style="background-image:url(/static/userImages/{{list.collectionImageId}}.jpg)"></div>
+                <a ng-href="/user/{{user.slug}}/c/{{list._id}}">
+                    <span class="badge pull-right">{{countCollection(list.games)}}</span>{{list.title}}
+                </a>
+            </li>
+            <li class="collection-list-item new-collection-item">
+                <a ng-href="/create/collection" class="add-list-button">
+                    <span>+ Ny samling</span>
+                </a>
+            </li>
+        </ul>
+</div>

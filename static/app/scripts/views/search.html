@@ -1,0 +1,9 @@
+<div id="search" class="search-container" ng-if="game.selectedRow == gameRow && showSearch">
+    <ul class="search-list">
+
+        <li ng-repeat="search in searchResults" ng-click="setValue(search.console)">
+            {{search.console}}
+        </li>
+
+    </ul>
+</div>
